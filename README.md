@@ -11,7 +11,7 @@ Integrating module for Clover POS
 ## Clover Connector Guidelines:
 
 1. sam app contain 2 lambda function
-    * order-reformer(This lambda function transforms the orders and send it to uKonmi api as soon as the order is created in clover POS)
+    * order-reformer(This lambda function transforms the orders and send it to example api as soon as the order is created in clover POS)
     * menu-extractor - Lambda function to get menu items from Clover and update them into DynamoDB table
 2. sam deploy --guided to deploy the app using template.yaml
 

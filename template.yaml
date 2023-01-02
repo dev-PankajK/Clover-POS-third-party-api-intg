@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  AWS-connectors-sam
+
+
+Parameters:
+  StageName:
+    Type: String
+    Default: NONE
+  Region:
+    Type: String
+    Default: NONE
+  APIName:
+    Type: String
+    Default: NONE
+
+Globals:
+  Function:
+    Timeout: 500
+    Layers:
+      - !Ref AWSLambdaLayer
+    Environment:
+      Variables:
+        REGION: !Ref Region
+        API_NAME: !Ref APIName
+        STAGE_NAME: !Ref StageName
+
+Resources:
+      # Cors: "'*'"
+  UknomiConnectorsCoreLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: BuildDependencies
+      Description: Dependencies
+      ContentUri: dependencies/
+      CompatibleRuntimes:
+        - python3.9
+      RetentionPolicy: Delete
+    Metadata:
+      BuildMethod: python3.9
+
+  OrderReformer:
+    Type: AWS::Serverless::Function
+    Properties:
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - AmazonS3FullAccess
+      CodeUri: order_reformer_function/
+      Handler: app.lambda_handler
+      Runtime: python3.9

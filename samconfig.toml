@@ -1,0 +1,14 @@
+version = 0.1
+
+[dev.deploy.parameters]
+stack_name = "sam-app-clover"
+s3_bucket = "clover-bucket-name"
+s3_prefix = "sam-app-clover"
+region = "ap-south-1"
+confirm_changeset = false
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "StageName=\"dev\" Region=\"ap-south-1\" APIName=\"cloverapi\""
+image_repositories = []
+
+
+

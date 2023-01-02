@@ -1,4 +1,4 @@
-# uknomi_pos_integration
+# Clover_pos_integration
 Integrating module for Clover POS
 
 ## Technology Used
